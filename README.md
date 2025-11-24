@@ -1,6 +1,7 @@
 ## NgRx Store Cart Manager Application - Angular v20.3.4
 
 This project is a modern, standalone Angular application built to demonstrate robust, scalable state management using the NgRx pattern for an e-commerce catalog and shopping cart system.
+**Live Demo:** https://cart-manager-ten.vercel.app/
 
 🚀 Key Technologies
 
