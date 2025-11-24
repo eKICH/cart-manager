@@ -1,0 +1,16 @@
+.prod-search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.search {
+    width: 500px;
+}
+
+.btn-search {
+    background-color: black;
+    color: #F0F0F0;
+}

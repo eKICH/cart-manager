@@ -1,0 +1,70 @@
+header {
+    background: rgb(45, 44, 44);
+    color: white;
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin-left: 50px;
+}
+
+.header-links {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.header-links li a {
+    display: block;
+    height: 100%;
+    line-height: 60px;
+    padding: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.active-route {
+    background-color: rgb(191, 115, 115);
+}
+
+.header-links li a:hover {
+    background: #F0F0F0;
+    color: black;
+}
+
+
+
+.cart-icon {
+    position: relative;
+    right: 50px;
+    display: inline-block;
+    height: 100%;
+    line-height: 60px;
+    color: #F0F0F0;
+    padding: 0 15px;
+}
+
+.cart-icon:hover {
+    cursor: pointer;
+}
+
+.cart-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    font-size: 10px;
+    font-weight: bold;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}

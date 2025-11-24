@@ -1,0 +1,46 @@
+@let products = product$ | async;
+@let isLoading = productLoading$ | async;
+@let cartError = cartError$ | async;
+@let productError = productError$ | async;
+
+<div class="product-container">
+
+    @if (isLoading) {
+    <div class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+    }
+
+    @if (cartError) {
+    <p class="cart-error">Error: {{ cartError }}</p>
+    }
+
+    @if (productError) {
+    <div class="product-error">
+        <div class="toast-message">{{ productError }}</div>
+        <span class="close-btn" (click)="hideToast()">X</span>
+    </div>
+    }
+
+    @if (products && !isLoading && !productError) {
+
+    @for (product of products; track product.id) {
+
+    <app-product-card [product]="product" (addToCart)="onAddToCart($event)" />
+
+    } @empty {
+        @if (searchTerm$ | async) {
+        <p class="no-products">No products found matching your search.</p>
+        } @else if (!productError) {
+            <p class="no-products">Something went wrong, Try later!</p>
+        }
+        @else {
+        <p class="no-products">No products found..</p>
+        }
+    }
+
+    } @else if(!isLoading && !productError){
+    <p class="no-products">No products are available at this time..</p>
+    }
+
+</div>

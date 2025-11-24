@@ -1,0 +1,41 @@
+<div class="product-card">
+    <div class="image-container">
+        @if (!isImageLoaded()) {
+        <div class="skeleton-loader"></div>
+        }
+        <img [src]="product().prodImage" [alt]="product().name" class="prod-img" [class.opacity-0]="!isImageLoaded()"
+            [class.opacity-1]="isImageLoaded()" (load)="onImageLoad()">
+    </div>
+
+    <h2 class="prod-name">{{product().name.substring(0, 50)}}...</h2>
+    <p class="prod-desc">{{product().description.substring(0, 90)}}...</p>
+    <div class="price-in-stock">
+        <h3 class="prod-price">{{product().price | currency}}</h3>
+        <p class="prod-status {{product().stock > 0 ? 'in-stock' : 'out-of-stock'}}">{{product().stock > 0 ? 'In Stock'
+            : 'Out Of Stock'}}</p>
+    </div>
+
+    @if (product().stock > 0) {
+    <div class="prod-counter">
+        <button [class.disabled]="quantity() === 1" (click)="decrementQuantity()">-</button>
+        <p [class.disabled]="!isInStock()">{{ quantity() }}</p>
+        <button [class.disabled]="quantity() === product().stock || !isInStock()"
+            (click)="incrementQuantity()">+</button>
+        <button class="add-to-cart" [class.disabled]="!isInStock()" (click)="onAddToCart()">
+            @if (isAdding()) {
+            <div class="adding-container">
+                <div class="spinner"></div>
+                <p>Adding...</p>
+            </div>
+            } @else {
+            Add To Cart
+            }
+        </button>
+
+    </div>
+    }
+
+    <a class="view-product" [routerLink]="['/product', product().id, product().name]">
+        View Product
+    </a>
+</div>

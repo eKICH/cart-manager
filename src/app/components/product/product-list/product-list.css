@@ -1,0 +1,99 @@
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 320px));
+    gap: 10px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    width: 100%
+}
+
+.no-products {
+    margin-left: 50px;
+    width: 100%;
+}
+
+.product-error,
+.cart-error {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 16px;
+    margin-bottom: 0;    
+    background-color: #fee2e2;
+    border-left: 6px solid #b91c1c;
+    border-radius: 4px;
+    
+    animation: slideInRight 0.4s ease-out forwards;
+
+    display: flex;
+    align-items: center;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast-message {
+    color: #b91c1c;
+    text-align: left;
+    font-weight: 500;
+}
+
+.close-btn {
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 8px;
+    color: #000;
+    cursor: pointer;
+}
+
+.spinner-container {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.4);
+    /* backdrop-filter: blur(20px); */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid #e0e0e0;
+    border-top-color: #4f46e5;
+
+    animation: spin 1s linear infinite;
+}
+
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

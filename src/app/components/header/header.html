@@ -1,0 +1,10 @@
+@let totalQauntity = totalQuantity$ | async;
+
+<header>
+    <p class="title">{{cartManager()}}</p>
+    <a class="cart-icon" routerLink="/cart" routerLinkActive="active-route">
+        <fa-icon [icon]="cartIcon" class="fa-xl"></fa-icon>
+
+        <span class="cart-badge">{{ totalQauntity }}</span>
+    </a>
+</header>

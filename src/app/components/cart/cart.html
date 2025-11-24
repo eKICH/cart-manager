@@ -1,0 +1,55 @@
+<!-- Unwrap observables into local template variables -->
+@let items = items$ | async;
+@let totalAmount = totalAmount$ | async;
+
+
+<div class="cart-container">
+  <h3>Your Shopping Cart</h3>
+
+  @if (items && items.length > 0) {
+  <div class="cart-content">
+    <table>
+      <thead>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Product Price</th>
+        <th>Product Qty</th>
+        <th>Product Total</th>
+        <th>Action</th>
+      </thead>
+
+      @for (item of items; track item.productId) {
+      <tr>
+        <td><img [src]="item.prodImage" alt="product image"></td>
+        <td class="prod-name">{{item.name}}</td>
+        <td>{{item.price | currency}}</td>
+        <td>
+          <div class="update-quantity">
+            <button class="update-qty" [class.disabled]="item.quantity === 1"
+              (click)="onQuantityDecrement(item)">-</button>
+            <p>{{item.quantity}}</p>
+            <button class="update-qty" [class.disabled]="item.stock === item.quantity"
+              (click)="onQuantityIncrement(item)">+</button>
+          </div>
+        </td>
+        <td>{{(item.price * item.quantity) | currency}}</td>
+        <td><button class="remove" (click)="onRemoveItem(item.productId)">X</button></td>
+      </tr>
+      }
+    </table>
+    <div class="grand-clear-cart">
+      <p><strong>Grand Total: {{ totalAmount | currency}}</strong></p>
+    </div>
+    <button class="checkout">Check Out</button>
+
+    <button class="clear-cart" (click)="onClearCart()">Clear Cart</button>
+    <a routerLink="/">Continue Shopping</a>
+  </div>
+  } @else {
+  <div class="empty-cart">
+    <p>Your Cart Is Empty!</p>
+    <a routerLink="/"> Continue Shopping</a>
+  </div>
+  }
+
+</div>

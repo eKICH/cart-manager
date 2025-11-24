@@ -1,0 +1,42 @@
+@if (product(); as product) {
+<div class="product-details-container">
+    <div class="img-container">
+        <img class="product-image" [src]="product.prodImage" alt="product image">
+    </div>
+    <div class="product-details">
+        <div class="prod-name_continue-shopping">
+            <h2>{{product.name}}</h2>
+            <a routerLink="/">Continue Shopping</a>
+        </div>
+
+        @if (product.stock <= 10 && product.stock>= 1) {
+            <span class="info">{{product.stock}} Items Left</span>
+            } @else if(product.stock === 0) {
+            <span class="danger">Out Of Stock</span>
+            }
+            <h3 class="price">{{product.price | currency}}</h3>
+            <div class="add-to-cart">
+                <button class="to-cart" [class.disabled]="quantity() === 1" (click)="decrementQuantity()">-</button>
+                <p [class.disabled]="!isInStock()">{{quantity()}}</p>
+                <button class="to-cart" [class.disabled]="quantity() === product.stock || !isInStock()"
+                    (click)="incrementQuantity()">+</button>
+
+                <button class="to-cart" [class.disabled]="!isInStock()" (click)="onAddToCart()">
+                    @if(isAdding()){
+                    Adding...
+                    }@else {
+                    Add To Cart
+                    }
+                </button>
+            </div>
+            <div class="description">
+                <h4>Description</h4>
+                <p>{{product.description}}</p>
+            </div>
+
+    </div>
+</div>
+}
+@else {
+<div class="spinner">...Loading</div>
+}
